@@ -1,15 +1,33 @@
-<div class="search-bar-container">
-    <input placeholder="UwU">
-</div>
-
-
 <!-- <div class="search-bar-container">
+    <input placeholder="UwU">
+</div> -->
+<!-- class="form-control" -->
+
+
+<div 
+  class="search-bar-container" 
+  cdkOverlayOrigin 
+  #overlayPosition="cdkOverlayOrigin"
+  [ngClass]="{'opened mat-elevation-z2' : overlayOpen() }"
+>
     <button mat-icon-button>
         <mat-icon>search</mat-icon>
     </button>
-    <input type="text" class="form-control" [(ngModel)]="input" placeholder="Name ...">
+    <input #searchInput type="text" 
+     [(ngModel)]="input" placeholder="Name ..." 
+     (click)="overlayOpen.set(true)"
+     (keydown.ENTER)="search(searchInput.value)"
+     />
 </div>
-<h1>{{input}}</h1> -->
+<ng-template 
+  cdkConnectedOverlay 
+  [cdkConnectedOverlayOrigin]="overlayPosition" 
+  [cdkConnectedOverlayOpen]="overlayOpen()"
+  (overlayOutsideClick)="overlayOpen.set(false)"
+  >
+  <app-search-overlay />
+
+</ng-template>
 
 <!-- <div class="custom-wrapper-example" matAutocompleteOrigin #origin="matAutocompleteOrigin">
     <input

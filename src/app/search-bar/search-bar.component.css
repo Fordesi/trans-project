@@ -15,6 +15,11 @@
         background: inherit;
         min-width: 352px;
     }
+    
+    &.opened{
+        background: white;
+        border-radius: 32px 32px 0px 0px;
+    }
 }
 
 /* input {
